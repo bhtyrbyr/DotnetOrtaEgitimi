@@ -9,5 +9,9 @@ Burada bir açıklama gerçekleştirildi.
 ~~~
 
 ~~~
-git comit --amend -m "Master2 | Bu amend ile eklenmiş yeni bir mesaj"
+git commit --amend -m "Master2 | Bu amend ile eklenmiş yeni bir mesaj"
+~~~
+
+~~~
+git revert commit_ID
 ~~~
