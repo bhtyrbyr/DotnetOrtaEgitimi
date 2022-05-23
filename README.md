@@ -4,6 +4,8 @@ Burada bir açıklama gerçekleştirildi.
 
 ## Bu yeni Bir Başlık
 
+Burada bir paragraf vardır.
+
 ~~~
    " --amend " son commit içerisine ekleme yapar harici bir commit atmaz
 ~~~
@@ -11,3 +13,4 @@ Burada bir açıklama gerçekleştirildi.
 ~~~
 git comit --amend -m "Master2 | Bu amend ile eklenmiş yeni bir mesaj"
 ~~~
+
