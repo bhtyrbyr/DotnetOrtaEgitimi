@@ -1,0 +1,1 @@
+# Patika.dev .Net Core Orta Seviye Eğitim Patikası
