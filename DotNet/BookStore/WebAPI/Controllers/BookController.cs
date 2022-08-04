@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using WebAPI.BookOperations.CreateBooks;
+using WebAPI.BookOperations.DeleteBooks;
+using WebAPI.BookOperations.GetBooks;
+using WebAPI.BookOperations.UpdateBooks;
 using WebAPI.DBOperations;
 
 namespace WebAPI.AddControllers
@@ -44,17 +48,27 @@ namespace WebAPI.AddControllers
         };*/
 
         [HttpGet]
-        public List<Book> GetBooks()
+        public IActionResult GetBooks()
         {
-            var bookList = _context.Books.OrderBy(x => x.ID).ToList<Book>();
-            return bookList;
+            GetBooksQuery query = new GetBooksQuery(_context);
+            var result = query.Handle();
+            return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public Book getById(int id)
+        [HttpGet("{title}")]
+        public IActionResult getById(string title)
         {
-            var book = _context.Books.Where(book => book.ID == id).SingleOrDefault();
-            return book;
+            GetBookByIDQuery query = new GetBookByIDQuery(_context);
+            try
+            {
+                query.Title = title;
+                var result = query.Handle();
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 /*
         [HttpGet]
@@ -65,41 +79,52 @@ namespace WebAPI.AddControllers
         }
 */
         [HttpPost]
-        public IActionResult postBook([FromBody] Book newBook)
+        public IActionResult addBooks([FromBody] CreateBookModel newBook)
         {
-            var book = _context.Books.SingleOrDefault(x=> x.Title == newBook.Title);
-            if(book is not null)
-                return BadRequest();
-            _context.Books.Add(newBook);
-            _context.SaveChanges();
+            CreateBookCommand query = new CreateBookCommand(_context);
+            try
+            {
+                query.NewBook = newBook;
+                query.Handle();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult updateBook(int id, [FromBody] Book updateBook)
+        [HttpPut("{title}")]
+        public IActionResult updateBook(string title, [FromBody] UpdateBookModel updateBook)
         {
-            var Book = _context.Books.Where(book => book.ID == id).SingleOrDefault();
-            if(Book is not null){
-                Book.Title = updateBook.Title != "string" ? updateBook.Title : Book.Title;
-                Book.GenreId = updateBook.GenreId != default ? updateBook.GenreId : Book.GenreId;
-                Book.PageCount = updateBook.PageCount != default ? updateBook.PageCount : Book.PageCount;
-                Book.PublishDate = updateBook.PublishDate != default ? updateBook.PublishDate : Book.PublishDate;
-                _context.SaveChanges();
-                return Ok();
+            UpdateBookCommand command = new UpdateBookCommand(_context);
+            try
+            {
+                command.Title = title;
+                command.Model = updateBook;
+                command.Handle();
             }
-            return BadRequest();
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{title}")]
 
-        public IActionResult deleteBook(int id)
+        public IActionResult deleteBook(string title)
         {
-            var book = _context.Books.SingleOrDefault(x=> x.ID == id);
-            if(book is null)
-                return BadRequest();
-                
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+            DeleteBookCommand query = new DeleteBookCommand(_context);
+            try
+            {
+                query.title = title;
+                query.Handle();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
             return Ok();
         }
     }
