@@ -4,15 +4,18 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.DBOperations;
 using WebAPI.Common;
+using AutoMapper;
 
 namespace WebAPI.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
         private readonly BookStoreDbContext _dbContext;
-        public GetBooksQuery(BookStoreDbContext dbContext)
+        private readonly IMapper _mapper;
+        public GetBooksQuery(BookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public List<BooksViewModel> Handle()
@@ -21,12 +24,14 @@ namespace WebAPI.BookOperations.GetBooks
             List<BooksViewModel> vm = new List<BooksViewModel>();
             foreach (var book in bookList)
             {
-                vm.Add(new BooksViewModel(){
+                vm.Add(
+                    _mapper.Map<BooksViewModel>(book)
+                    /*new BooksViewModel(){
                     Title = book.Title,
                     PageCount = book.PageCount,
                     PublishDate = book.PublishDate.Date.ToString("dd/MM/yyyy"),
                     Genre = ((GenreEnum)book.GenreId).ToString()
-                });
+                }*/);
             }
             return vm;
         }
