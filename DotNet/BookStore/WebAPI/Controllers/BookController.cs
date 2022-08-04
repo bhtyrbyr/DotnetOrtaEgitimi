@@ -9,6 +9,8 @@ using WebAPI.BookOperations.GetBooks;
 using WebAPI.BookOperations.UpdateBooks;
 using WebAPI.DBOperations;
 using AutoMapper;
+using FluentValidation.Results;
+using FluentValidation;
 
 namespace WebAPI.AddControllers
 {
@@ -65,6 +67,8 @@ namespace WebAPI.AddControllers
             try
             {
                 query.Title = title;
+                GetBookByIDQueryValidator validator = new GetBookByIDQueryValidator();
+                validator.ValidateAndThrow(query);
                 var result = query.Handle();
                 return Ok(result);
             }
@@ -85,10 +89,22 @@ namespace WebAPI.AddControllers
         public IActionResult addBooks([FromBody] CreateBookModel newBook)
         {
             CreateBookCommand query = new CreateBookCommand(_context, _mapper);
+            //string message = "";
             try
             {
-                query.NewBook = newBook;
+                query.Model = newBook;
+                CreateBookCommandValidator validator = new CreateBookCommandValidator();
+                validator.ValidateAndThrow(query);
                 query.Handle();
+                /*ValidationResult result = validator.Validate(query);
+                if(!result.IsValid)
+                {
+                    foreach (var item in result.Errors)
+                        message  += "Özellik" + item.PropertyName + " - Error Message " + item.ErrorCode + " " + item.ErrorMessage + "\n";
+                    throw new ArgumentException(message);
+                }
+                else
+                    query.Handle();*/
             }
             catch (System.Exception ex)
             {
@@ -105,6 +121,8 @@ namespace WebAPI.AddControllers
             {
                 command.Title = title;
                 command.Model = updateBook;
+                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch (System.Exception ex)
@@ -122,6 +140,8 @@ namespace WebAPI.AddControllers
             try
             {
                 query.title = title;
+                DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+                validator.ValidateAndThrow(query);
                 query.Handle();
             }
             catch (System.Exception ex)

@@ -61,3 +61,4 @@ C:\Users\muham\OneDrive\Masaüstü\dotnet\DotnetOrtaEgitimi\DotNet\BookStore\Web
 C:\Users\muham\OneDrive\Masaüstü\dotnet\DotnetOrtaEgitimi\DotNet\BookStore\WebAPI\obj\Debug\net5.0\ref\WebAPI.dll
 C:\Users\muham\OneDrive\Masaüstü\dotnet\DotnetOrtaEgitimi\DotNet\BookStore\WebAPI\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\muham\OneDrive\Masaüstü\dotnet\DotnetOrtaEgitimi\DotNet\BookStore\WebAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\muham\OneDrive\Masaüstü\dotnet\DotnetOrtaEgitimi\DotNet\BookStore\WebAPI\bin\Debug\net5.0\FluentValidation.dll
