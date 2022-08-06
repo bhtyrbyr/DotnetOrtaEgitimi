@@ -64,6 +64,12 @@ namespace WebAPI.AddControllers
         public IActionResult getById(string title)
         {
             GetBookByIDQuery query = new GetBookByIDQuery(_context, _mapper);
+            GetBookByIDQueryValidator validator = new GetBookByIDQueryValidator();
+            query.Title = title;
+            validator.ValidateAndThrow(query);
+            var result = query.Handle();
+            return Ok(result);
+            /*GetBookByIDQuery query = new GetBookByIDQuery(_context, _mapper);
             try
             {
                 query.Title = title;
@@ -75,7 +81,7 @@ namespace WebAPI.AddControllers
             catch (System.Exception ex)
             {
                 return BadRequest(ex.Message);
-            }
+            }*/
         }
 /*
         [HttpGet]
@@ -89,6 +95,13 @@ namespace WebAPI.AddControllers
         public IActionResult addBooks([FromBody] CreateBookModel newBook)
         {
             CreateBookCommand query = new CreateBookCommand(_context, _mapper);
+            query.Model = newBook;
+            CreateBookCommandValidator validator = new CreateBookCommandValidator();
+            validator.ValidateAndThrow(query);
+            query.Handle();
+            return Ok();
+            /*
+            CreateBookCommand query = new CreateBookCommand(_context, _mapper);
             //string message = "";
             try
             {
@@ -96,7 +109,7 @@ namespace WebAPI.AddControllers
                 CreateBookCommandValidator validator = new CreateBookCommandValidator();
                 validator.ValidateAndThrow(query);
                 query.Handle();
-                /*ValidationResult result = validator.Validate(query);
+                ValidationResult result = validator.Validate(query);
                 if(!result.IsValid)
                 {
                     foreach (var item in result.Errors)
@@ -104,19 +117,26 @@ namespace WebAPI.AddControllers
                     throw new ArgumentException(message);
                 }
                 else
-                    query.Handle();*/
+                    query.Handle();
             }
             catch (System.Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            return Ok();
+            return Ok();*/
         }
 
         [HttpPut("{title}")]
         public IActionResult updateBook(string title, [FromBody] UpdateBookModel updateBook)
         {
             UpdateBookCommand command = new UpdateBookCommand(_context);
+            UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+            command.Title = title;
+            command.Model = updateBook;
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
+            /*UpdateBookCommand command = new UpdateBookCommand(_context);
             try
             {
                 command.Title = title;
@@ -129,7 +149,7 @@ namespace WebAPI.AddControllers
             {
                 return BadRequest(ex.Message);
             }
-            return Ok();
+            return Ok();*/
         }
 
         [HttpDelete("{title}")]
@@ -137,6 +157,12 @@ namespace WebAPI.AddControllers
         public IActionResult deleteBook(string title)
         {
             DeleteBookCommand query = new DeleteBookCommand(_context);
+            DeleteBookCommandValidator validator = new DeleteBookCommandValidator();
+            query.title = title;
+            validator.ValidateAndThrow(query);
+            query.Handle();
+            return Ok();
+            /*DeleteBookCommand query = new DeleteBookCommand(_context);
             try
             {
                 query.title = title;
@@ -148,10 +174,11 @@ namespace WebAPI.AddControllers
             {
                 return BadRequest(ex.Message);
             }
-            return Ok();
+            return Ok();*/
         }
     }
 
+    /*TESTTTTTT*/
     [ApiController]
     [Route("[controller]s")]
     public class DeleteBookController : ControllerBase

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\muham\\OneDrive\\Masaüstü\\dotnet\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\muham\\OneDrive\\Masaüstü\\dotnet\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\muham\\OneDrive\\Masaüstü\\dotnet\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\muham\\OneDrive\\Masaüstü\\dotnet\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
+        "projectPath": "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
         "packagesPath": "C:\\Users\\muham\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\muham\\OneDrive\\Masaüstü\\dotnet\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\muham\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,6 +59,10 @@
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[5.0.6, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
