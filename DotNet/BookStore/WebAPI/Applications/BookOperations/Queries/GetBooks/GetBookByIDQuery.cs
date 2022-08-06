@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using AutoMapper;
-using WebAPI.Common;
+using Microsoft.EntityFrameworkCore;
 using WebAPI.DBOperations;
 
-namespace WebAPI.BookOperations.GetBooks
+namespace WebAPI.Applications.BookOperations.Queries.GetBooks
 {
     public class GetBookByIDQuery
     {
@@ -19,7 +19,7 @@ namespace WebAPI.BookOperations.GetBooks
 
         public BooksViewModel Handle()
         {
-            var bookList = _dbContext.Books.Where(x => x.Title == Title).SingleOrDefault();
+            var bookList = _dbContext.Books.Include(x => x.Genre).Include(x => x.Author).Where(x => x.Title == Title).SingleOrDefault();
             if(bookList is null){
                 throw new ArgumentException("Var olmayan bir kitap başlığı girdiniz!");
             }

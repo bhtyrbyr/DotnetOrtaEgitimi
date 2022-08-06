@@ -1,7 +1,14 @@
 using AutoMapper;
-using WebAPI.BookOperations.CreateBooks;
-using WebAPI.BookOperations.GetBooks;
-using WebAPI.BookOperations.UpdateBooks;
+using WebAPI.Applications.AuthorOperations.Commands.CreateAuthors;
+using WebAPI.Applications.AuthorOperations.Queries.GetAuthorDetail;
+using WebAPI.Applications.AuthorOperations.Queries.GetAuthors;
+using WebAPI.Applications.BookOperations.Commands.CreateBooks;
+using WebAPI.Applications.BookOperations.Queries.GetBooks;
+using WebAPI.Applications.GenreOperations.Commands.CreateGenres;
+using WebAPI.Applications.GenreOperations.Commands.UpdateGenres;
+using WebAPI.Applications.GenreOperations.Queries.GetGenreDetail;
+using WebAPI.Applications.GenreOperations.Queries.GetGenres;
+using WebAPI.Entitys;
 
 namespace WebAPI.Common
 {
@@ -10,7 +17,18 @@ namespace WebAPI.Common
         public MappingProfile()
         {
             CreateMap<CreateBookModel, Book>();
-            CreateMap<Book, BooksViewModel>().ForMember(dest => dest.Genre, opt => opt.MapFrom(src => ((GenreEnum)src.GenreId).ToString()));
+            CreateMap<Book, BooksViewModel>().ForMember(
+                dest => dest.Genre, opt => opt.MapFrom(src => src.Genre.Name)
+            ).ForMember(
+                dest => dest.Author, opt => opt.MapFrom(src => src.Author.ToString())
+            );
+            CreateMap<Genre, GenreViewModel>();
+            CreateMap<Genre, GenreDetailViewModel>();
+            CreateMap<CreateGenreModel, Genre>();
+            CreateMap<Genre, UpdateGenreModel>();           
+            CreateMap<Author, AuthorViewModel>();         
+            CreateMap<Author, AuthorDetailViewModel>();          
+            CreateMap<CreateAuthorModel, Author>(); 
         }
     }
 }

@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using WebAPI.DBOperations;
-using WebAPI.Common;
 using AutoMapper;
+using WebAPI.Entitys;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebAPI.BookOperations.GetBooks
+namespace WebAPI.Applications.BookOperations.Queries.GetBooks
 {
     public class GetBooksQuery
     {
@@ -20,7 +19,7 @@ namespace WebAPI.BookOperations.GetBooks
 
         public List<BooksViewModel> Handle()
         {
-            var bookList = _dbContext.Books.OrderBy(x => x.ID).ToList<Book>();
+            var bookList = _dbContext.Books.Include(x => x.Genre).Include(x => x.Author).OrderBy(x => x.ID).ToList<Book>();
             List<BooksViewModel> vm = _mapper.Map<List<BooksViewModel>>(bookList);
             return vm;
         }
@@ -32,5 +31,6 @@ namespace WebAPI.BookOperations.GetBooks
         public int PageCount { get; set; }
         public string PublishDate { get; set; }
         public string Genre { get; set; }
+        public string Author { get; set; }
     }
 }
