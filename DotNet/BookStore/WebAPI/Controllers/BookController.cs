@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controller
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]s")]
     public class BookController : ControllerBase

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DGmAQHF1iggdRSLwXS9UBzNVI61fCA2KgbmXg9QDeTl4pZPCdDkrLEaFJvLQRhlRuskSojFNnA65tH1bCG4Hjw==",
+  "dgSpecHash": "4q3GJ5qNrlg0wmPR4RpOxAAlLWTyG6F74Bl+7hM2TW2h90ULuVMaLYsM/VG6FIYWV3IxMCwGYBgOry27wF3wAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
+  "projectFilePath": "c:\\Users\\muham\\OneDrive\\Masaüstü\\GIT\\DotnetOrtaEgitimi\\DotNet\\BookStore\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\muham\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\muham\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
