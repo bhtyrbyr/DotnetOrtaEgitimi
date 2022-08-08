@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Applications.GenreOperations.Commands.CreateGenres;
 using WebAPI.Applications.GenreOperations.Commands.DeleteGenres;
@@ -12,14 +13,15 @@ using WebAPI.DBOperations;
 
 namespace WebAPI.Controller
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]s")]
     public class GenreController : ControllerBase
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public GenreController(BookStoreDbContext context, IMapper mapper)
+        public GenreController(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

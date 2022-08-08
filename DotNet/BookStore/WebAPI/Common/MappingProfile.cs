@@ -8,6 +8,8 @@ using WebAPI.Applications.GenreOperations.Commands.CreateGenres;
 using WebAPI.Applications.GenreOperations.Commands.UpdateGenres;
 using WebAPI.Applications.GenreOperations.Queries.GetGenreDetail;
 using WebAPI.Applications.GenreOperations.Queries.GetGenres;
+using WebAPI.Applications.UserOperations.Commands.CreateTokenCommand;
+using WebAPI.Applications.UserOperations.Commands.CreateUserCommand;
 using WebAPI.Entitys;
 
 namespace WebAPI.Common
@@ -28,7 +30,8 @@ namespace WebAPI.Common
             CreateMap<Genre, UpdateGenreModel>();           
             CreateMap<Author, AuthorViewModel>();         
             CreateMap<Author, AuthorDetailViewModel>();          
-            CreateMap<CreateAuthorModel, Author>(); 
+            CreateMap<CreateAuthorModel, Author>();        
+            CreateMap<CreateUserModel, User>();   
         }
     }
 }

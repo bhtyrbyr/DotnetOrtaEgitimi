@@ -16,6 +16,15 @@ namespace WebAPI.DBOperations
                 {
                     return;
                 }
+                context.Users.AddRange(
+                    new User{
+                        Name = "Kullanıcı",
+                        Surname = "1",
+                        Email = "kullanici1@mail.com",
+                        Password = "123qweasd",
+                        
+                    }
+                );
                 context.Authors.AddRange(
                     new Author{
                         Name = "Yazar",

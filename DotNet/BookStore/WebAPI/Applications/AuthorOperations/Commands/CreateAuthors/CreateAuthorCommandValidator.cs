@@ -6,9 +6,9 @@ namespace WebAPI.Applications.AuthorOperations.Commands.CreateAuthors
     {
         public CreateAuthorCommandValidator()
         {
-            RuleFor(command => command.model.Name).NotEmpty();
-            RuleFor(command => command.model.Surname).NotEmpty();
-            RuleFor(command => command.model.BirthDate).LessThan(System.DateTime.Now.Date);
+            RuleFor(command => command.Model.Name).NotEmpty();
+            RuleFor(command => command.Model.Surname).NotEmpty();
+            RuleFor(command => command.Model.BirthDate).LessThan(System.DateTime.Now.Date);
         }
     }
 }

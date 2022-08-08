@@ -8,17 +8,19 @@ using WebAPI.Applications.AuthorOperations.Commands.DeleteAuthors;
 using WebAPI.Applications.AuthorOperations.Queries.GetAuthorDetail;
 using WebAPI.DBOperations;
 using WebAPI.Applications.AuthorOperations.Commands.UpdateAuthors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.Controller
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]s")]
     public class AuthorController : ControllerBase
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public AuthorController(BookStoreDbContext context, IMapper mapper)
+        public AuthorController(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -48,7 +50,7 @@ namespace WebAPI.Controller
         public ActionResult addBooks([FromBody] CreateAuthorModel newBook)
         {
             CreateAuthorCommand query = new CreateAuthorCommand(_context, _mapper);
-            query.model = newBook;
+            query.Model = newBook;
             Applications.AuthorOperations.Commands.CreateAuthors.CreateAuthorCommandValidator validator = 
             new Applications.AuthorOperations.Commands.CreateAuthors.CreateAuthorCommandValidator();
             validator.ValidateAndThrow(query);

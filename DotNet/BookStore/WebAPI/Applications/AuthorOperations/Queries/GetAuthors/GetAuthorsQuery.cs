@@ -8,9 +8,9 @@ namespace WebAPI.Applications.AuthorOperations.Queries.GetAuthors
 {
     public class GetAuthorsQuery
     {
-        private readonly BookStoreDbContext _DbContext;
+        private readonly IBookStoreDbContext _DbContext;
         private readonly IMapper _mapper;
-        public GetAuthorsQuery(BookStoreDbContext dbContext, IMapper mapper)
+        public GetAuthorsQuery(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _DbContext = dbContext;
             _mapper = mapper;
