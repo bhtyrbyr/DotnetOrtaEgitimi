@@ -2,6 +2,8 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Applications.MovieOperations.Commands.CreateMovieCommand;
+using WebApi.Applications.MovieOperations.Commands.DeleteMovieCommand;
+using WebApi.Applications.MovieOperations.Commands.UpdateBookCommand;
 using WebApi.Applications.MovieOperations.Queries.GetMovieDetailQuery;
 using WebApi.Applications.MovieOperations.Queries.GetMoviesQuery;
 using WebApi.DbOperations;
@@ -10,11 +12,11 @@ namespace WebApi.Controller
 {
     [ApiController]
     [Route("[controller]s")]
-    public class MoviesController : ControllerBase
+    public class MovieController : ControllerBase
     {
         private readonly MovieStoreDbContext _context;
         private readonly IMapper _mapper;
-        public MoviesController(MovieStoreDbContext context, IMapper mapper)
+        public MovieController(MovieStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -43,6 +45,27 @@ namespace WebApi.Controller
         {
             CreateMovieCommand command = new CreateMovieCommand(_context, _mapper);
             CreateMovieCommandValidator validator = new CreateMovieCommandValidator();
+            command.model = model;
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMovie(int id)
+        {
+            DeleteMovieCommand command = new DeleteMovieCommand(_context, _mapper);
+            DeleteMovieCommandValidator validator = new DeleteMovieCommandValidator();
+            command.id = id;
+            validator.ValidateAndThrow(command);
+            command.Handle();
+            return Ok();
+        }
+        [HttpPut("{id}")]
+        public IActionResult UpdateMovie(int id, [FromBody] UpdateMovieViewModel model)
+        {
+            UpdateMovieCommand command = new UpdateMovieCommand(_context, _mapper);
+            UpdateMovieCommandValidator validator = new UpdateMovieCommandValidator();
+            command.id = id;
             command.model = model;
             validator.ValidateAndThrow(command);
             command.Handle();

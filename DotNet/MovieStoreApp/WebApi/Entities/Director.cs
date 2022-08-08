@@ -9,7 +9,7 @@ namespace WebApi.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public List<Movie> MovieIds { get; set; }
+        public List<DirectorMovie> DirectorMovies { get; set; }
 
         public override string ToString()
         {

@@ -9,6 +9,6 @@ namespace WebApi.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public virtual List<Movie> Movies { get; set; }
+        public virtual List<MovieActor> MovieActors { get; set; }
     }
 }

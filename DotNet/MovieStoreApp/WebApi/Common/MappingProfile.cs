@@ -1,5 +1,8 @@
 using System.Linq;
 using AutoMapper;
+using WebApi.Applications.ActorOperations.Command.CreateActorCommand;
+using WebApi.Applications.ActorOperations.Queries.GetActorsQuery;
+using WebApi.Applications.CreateOperationsTools;
 using WebApi.Applications.MovieOperations.Commands.CreateMovieCommand;
 using WebApi.Applications.MovieOperations.Queries.GetMoviesQuery;
 using WebApi.DbOperations;
@@ -21,8 +24,13 @@ namespace WebApi.Common
                 ForMember(
                     dest => dest.Genres, opt => opt.MapFrom(x => x.MovieGenres.Select(s => s.Genre.Name))
                 );
-            CreateMap<CreateMovieDirectorModel, Director>();
+            CreateMap<MovieDirectorViewModel, Director>();
 
+            CreateMap<Actor, ActorsViewModel>().
+                ForMember(
+                    dst => dst.Movies, opt => opt.MapFrom(x => x.MovieActors.Select(s => s.Movie.Name))
+                );
+            CreateMap<ActorCreateModel, Actor>();
         }
     }
 }

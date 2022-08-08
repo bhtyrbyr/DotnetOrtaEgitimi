@@ -33,6 +33,90 @@ namespace WebApi.DbOperations
                         Name = "Crime" // 5
                     }
                 );
+                context.Directors.AddRange(
+                    new Director{
+                        Name = "Christopher",
+                        Surname = "Nolan",
+                        /*MovieIds = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
+                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar")
+                        }*/
+                    },
+                    new Director{
+                        Name = "Francis Ford",
+                        Surname = "Coppola",
+                        /*MovieIds = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather")
+                        }*/
+                    },
+                    new Director{
+                        Name = "Frank",
+                        Surname = "Darabont",
+                        /*MovieIds = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption")
+                        }*/
+                    }
+                );
+                context.Actors.AddRange(
+                    new Actor{ //1
+                        Name = "Leanardo",
+                        Surname = "DiCaprio",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
+                        }*/
+                    },
+                    new Actor{ //2 
+                        Name = "Joseph",
+                        Surname = "Gordon-Levitt",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
+                        }*/
+                    },
+                    new Actor{ //3
+                        Name = "Matthew",
+                        Surname = "McConaughey",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar"),
+                        }*/
+                    },
+                    new Actor{ //4
+                        Name = "Anne",
+                        Surname = "Hathaway",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar"),
+                        }*/
+                    },
+                    new Actor{ //5
+                        Name = "Marlon",
+                        Surname = "Brando",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather"),
+                        }*/
+                    },
+                    new Actor{ //6
+                        Name = "Al",
+                        Surname = "Pacino",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather"),
+                        }*/
+
+                    },
+                    new Actor{ //7
+                        Name = "Tim",
+                        Surname = "Robins",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption"),
+                        }*/
+                    },
+                    new Actor{ //8
+                        Name = "Morgan",
+                        Surname = "Freeman",
+                        /*Movies = new List<Movie>(){
+                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption"),
+                        }*/
+
+                    }
+                );
                 context.Movies.AddRange(
                     new Movie{
                         Name = "Inception", //1
@@ -145,88 +229,22 @@ namespace WebApi.DbOperations
                         GenreId = 5
                     }
                 );
-                context.Directors.AddRange(
-                    new Director{
-                        Name = "Christopher",
-                        Surname = "Nolan",
-                        /*MovieIds = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
-                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar")
-                        }*/
+                context.DirectorMovies.AddRange(
+                    new DirectorMovie{
+                        DirectorId = 1,
+                        MovieId = 1
                     },
-                    new Director{
-                        Name = "Francis Ford",
-                        Surname = "Coppola",
-                        /*MovieIds = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather")
-                        }*/
+                    new DirectorMovie{
+                        DirectorId = 1,
+                        MovieId = 2
                     },
-                    new Director{
-                        Name = "Frank",
-                        Surname = "Darabont",
-                        /*MovieIds = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption")
-                        }*/
-                    }
-                );
-                context.Actors.AddRange(
-                    new Actor{ //1
-                        Name = "Leanardo",
-                        Surname = "DiCaprio",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
-                        }*/
+                    new DirectorMovie{
+                        DirectorId = 2,
+                        MovieId = 3
                     },
-                    new Actor{ //2 
-                        Name = "Joseph",
-                        Surname = "Gordon-Levitt",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "Inception"),
-                        }*/
-                    },
-                    new Actor{ //3
-                        Name = "Matthew",
-                        Surname = "McConaughey",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar"),
-                        }*/
-                    },
-                    new Actor{ //4
-                        Name = "Anne",
-                        Surname = "Hathaway",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "Interstellar"),
-                        }*/
-                    },
-                    new Actor{ //5
-                        Name = "Marlon",
-                        Surname = "Brando",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather"),
-                        }*/
-                    },
-                    new Actor{ //6
-                        Name = "Al",
-                        Surname = "Pacino",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Godfather"),
-                        }*/
-
-                    },
-                    new Actor{ //7
-                        Name = "Tim",
-                        Surname = "Robins",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption"),
-                        }*/
-                    },
-                    new Actor{ //8
-                        Name = "Morgan",
-                        Surname = "Freeman",
-                        /*Movies = new List<Movie>(){
-                            context.Movies.SingleOrDefault(x => x.Name == "The Shawshank Redemption"),
-                        }*/
-
+                    new DirectorMovie{
+                        DirectorId = 3,
+                        MovieId = 4,
                     }
                 );
                 context.SaveChanges();
